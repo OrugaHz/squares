@@ -15,69 +15,93 @@ body {
 }
 
 h1 {
-	margin-bottom: 1em;
-	color: #fff;
-	text-align: center;
-	font-weight: lighter;
+	margin-bottom: 0.5em;
+	color: #ddd;
 	text-transform: uppercase;
 }
 
-.buttons {
-	display: flex;
-	justify-content: space-between;
+.fake-form {
 	margin-bottom: 3em;
-}
-
-.buttons-group {
-	margin: 0 3em;
-}
-
-.btn {
-	padding: 1em 2em;
-	margin: 0 1em;
-	text-transform: uppercase;
-	border: 1px solid #fff;
-	color: #fff;
-	background: none;
+	width: 600px;
+	height: 300px;
 	border-radius: 6px;
-	cursor: pointer;
-	transition: .3s;
+	overflow: hidden;
 }
 
-.btn:hover {
-	color: #000;
+.page {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	height: 100%;
+	font-size: 22px;
 	background-color: #fff;
 }
 
-.slider-box {
-	margin-bottom: 2em;
-	color: #fff;
-	font-size: 18px;
+.page:nth-child(even) {
+	background-color: #bbb;
 }
 
-#slider {
-	margin-bottom: 0.5em;
-	width: 400px;
-}
-
-.box {
+.active-page {
 	display: flex;
-	align-items: center;
+}
+
+.progress-box {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 3em;
+	width: 600px;
+}
+
+.progress-box::before,
+.progress-bar {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 4px;
+	z-index: -1;
+}
+
+.progress-box::before {
+	width: 100%;
+	background-color: #ddd;
+	content: "";
+}
+
+.progress-bar {
+	width: 0%;
+	background-color: royalblue;
+	transition: width .3s;
+}
+
+.step {
+	display: flex;
 	justify-content: center;
-	flex-wrap: wrap;
-	width: 1000px;
-}
-
-.square {
-	margin: 3px;
-	height: 32px;
-	width: 32px;
-	border: 1px solid #000;
+	align-items: center;
+	height: 40px;
+	width: 40px;
+	background-color: #fff;
+	border: 3px solid #ddd;
 	border-radius: 6px;
-	transition-property: background-color;
-	transition-duration: 3s;
 }
 
-.square:hover {
-	transition-duration: 0s !important;
+.active-step {
+	background-color: royalblue;
+	color: #fff;
+	border-color: royalblue;
+}
+
+.btn {
+	padding: 0.7em 2em;
+	font-size: 28px;
+	background-color: rgb(41, 72, 163);
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn:disabled {
+	background-color: #ddd;
+	color: #333;
+	cursor: default;
 }

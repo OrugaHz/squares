@@ -12,28 +12,29 @@
 </head>
 
 <body>
-    <div class="buttons">
-        <div class="buttons-group">
-            <h1>Animation speed:</h1>
-            <button class="btn" data-setting="speed" data-speed="30">slow</button>
-            <button class="btn" data-setting="speed" data-speed="3">normal</button>
-            <button class="btn" data-setting="speed" data-speed=".5">fast</button>
-        </div>
-        <div class="buttons-group">
-            <h1>Color range:</h1>
-            <button class="btn" data-setting="color" data-color-range="0">red</button>
-            <button class="btn" data-setting="color" data-color-range="100">green</button>
-            <button class="btn" data-setting="color" data-color-range="200">blue</button>
-            <button class="btn" data-setting="color" data-color-range="360">normal</button>
-        </div>
+    <h1>fake form</h1>
+    <div class="fake-form">
+        <div class="page active-page" data-number="1">Form #1</div>
+        <div class="page" data-number="2">Form #2</div>
+        <div class="page" data-number="3">Form #3</div>
+        <div class="page" data-number="4">Form #4</div>
+        <div class="page" data-number="5">Form #5</div>
     </div>
 
-    <div class="slider-box">
-        <input type="range" value="70" min="0" max="100" id="slider">
-        <p>Saturation <span class="slider-info">70</span>%</p>
+    <div class="progress-box">
+        <div class="progress-bar"></div>
+        <div class="step active-step">1</div>
+        <div class="step">2</div>
+        <div class="step">3</div>
+        <div class="step">4</div>
+        <div class="step">5</div>
     </div>
 
-    <div class="box"></div>
+    <div class="buttons-box">
+        <button class="btn btn-prev" disabled>🔙</button>
+        <button class="btn btn-next">🔜</button>
+    </div>
+    <!-- .klasa>{coś} -->
 
     <script src="script.js"></script>
 </body>

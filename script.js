@@ -1,68 +1,63 @@
-const box = document.querySelector('.box');
-const slider = document.querySelector('#slider');
-const sliderInfo = document.querySelector('.slider-info');
-const speedBtns = document.querySelectorAll('[data-setting="speed"]');
-const colorBtns = document.querySelectorAll('[data-setting="color"]');
+const formPages = document.querySelectorAll('.page');
+const steps = document.querySelectorAll('.step');
+const progressBar = document.querySelector('.progress-bar');
+const prevBtn = document.querySelector('.btn-prev');
+const nextBtn = document.querySelector('.btn-next');
 
-const squares = 546;
-let range = 360;
+let currentStep = 1;
 
-const createSquares = (speed) => {
-    box.innerHTML = '';
-
-    for (let i = 0; i < squares; i++) {
-        const square = document.createElement('div');
-        square.classList.add('square');
-
-        square.style.transitionDuration = speed;
-
-        square.addEventListener('mouseover', () => setColor(square))
-        square.addEventListener('mouseout', () => transparency(square))
-
-        box.appendChild(square);
+const handleNextBtn = () => {
+    currentStep++;
+    if (currentStep > steps.length) {
+        currentStep = steps.length;
     }
+    handleProgressBar();
 }
 
-
-const transparency = (square) => {
-
-    square.style.backgroundColor = `transparent`;
-
+const handlePrevBtn = () => {
+    currentStep--;
+    if (currentStep < 1) {
+        currentStep = 1;
+    }
+    handleProgressBar();
 }
 
-const setColor = square => {
-    let h
+const handleProgressBar = () => {
+    steps.forEach((step, index) => {
+        if (index < currentStep) {
+            step.classList.add('active-step');
+        } else {
+            step.classList.remove('active-step');
+        }
+    })
 
-    if (range === 360) {
-        h = Math.floor(Math.random() * 360);
+    const activeSteps = document.querySelectorAll('.active-steps');
+
+    progressBar.style.width = ((activeSteps.length - 1) / (steps.length - 1)) * 100 + '%';
+
+    handleButtons();
+    handleFormPage();
+}
+
+const handleButtons = () => {
+    if (currentStep === 1) {
+        prevBtn.disabled = true;
+    } else if (currentStep === steps.length) {
+        nextBtn.disabled = true;
     } else {
-        h = Math.floor(Math.random() * 60) + range;
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
     }
-
-    const s = slider.value + '%';
-    const l = '50%';
-
-    square.style.backgroundColor = `hsl(${h},${s},${l})`;
 }
 
-function handleSpeed() {
-    const newSpeed = this.dataset.speed + 's';
-    createSquares(newSpeed);
+const handleFormPage = () => {
+    formPages.forEach(page => {
+        if (currentStep == page.dataset.number) {
+            page.classList.add('active-page')
+        } else {
+            page.classList.remove('active-page')
+        }
+    })
 }
-
-function handleColorRange() {
-    range = parseInt(this.dataset.colorRange);
-
-}
-
-const showSliderInfo = () => {
-    sliderInfo.textContent = slider.value
-}
-
-speedBtns.forEach(btn => btn.addEventListener('click', handleSpeed))
-
-colorBtns.forEach(btn => btn.addEventListener('click', handleColorRange))
-
-slider.addEventListener('mousemove', showSliderInfo)
-
-createSquares()
+nextBtn.addEventListener('click', handleNextBtn);
+nextBtn.addEventListener('click', handlePrevBtn);
